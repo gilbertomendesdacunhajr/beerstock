@@ -72,4 +72,15 @@ public class BeerService {
         }
         throw new BeerStockExceededException(id, quantityToIncrement);
     }
+
+    public BeerDTO decrement(Long id, int quantityToDecrement) throws BeerNotFoundException, BeerStockExceededException {
+        Beer beerToDecrementStock = verifyIfExists(id);
+        int quantityAfterDecrement = beerToDecrementStock.getQuantity() - quantityToDecrement;
+        if (0 <= quantityToDecrement && quantityToDecrement <= beerToDecrementStock.getQuantity()) {
+            beerToDecrementStock.setQuantity(quantityAfterDecrement);
+            Beer DecrementedBeerStock = beerRepository.save(beerToDecrementStock);
+            return beerMapper.toDTO(DecrementedBeerStock);
+        }
+        throw new BeerStockExceededException(id, quantityToDecrement);
+    }
 }

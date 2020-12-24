@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-public class JsonConversionUtils {
+public class    JsonConversionUtils {
 
     public static String asJsonString(Object bookDTO) {
         try {
